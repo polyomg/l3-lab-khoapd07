@@ -1,0 +1,12 @@
+<html th:replace="~{/shared/layout::view(~{::title}, ~{::article})}"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<article>
+    <h1 th:text="#{menu.home}">Trang chủ</h1>
+    <img  style="width: 200px;" th:src="@{/photos/photo.png}">
+</article>
+</body>
+</html>
