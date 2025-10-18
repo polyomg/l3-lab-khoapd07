@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/product/more/save" method="post">
+    <input name="name" placeholder="Name">
+    <input name="price" placeholder="Price">
+    <button>Save</button>
+</form>
+
+<ul>
+    <li th:text="${p1.name}"></li>
+    <li th:text="${p1.price}"></li>
+</ul>
+
+<ul>
+    <li th:text="${p2.name}"></li>
+    <li th:text="${p2.price}"></li>
+</ul>
+
+<ul>
+    <th:block th:each="item : ${items}">
+        <li th:text="${item.name}"></li>
+        <li th:text="${item.price}"></li>
+    </th:block>
+</ul>
+
+</body>
+</html>

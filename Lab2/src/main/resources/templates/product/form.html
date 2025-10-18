@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<form action="/product/save" method="post">-->
+<!--    <input name="name" placeholder="Name">-->
+<!--    <input name="price" placeholder="Price">-->
+<!--    <button>Save</button>-->
+<!--</form>-->
+
+<!--<ul>-->
+<!--    <li th:text="${product.name}"></li>-->
+<!--    <li th:text="${product.price}"></li>-->
+<!--</ul>-->
+
+<form action="/product/save" method="post">
+    <input name="name" placeholder="Name">
+    <input name="price" placeholder="Price">
+    <button>Save</button>
+</form>
+
+<ul>
+    <li th:text="${p1.name}"></li>
+    <li th:text="${p1.price}"></li>
+</ul>
+
+<ul>
+    <li th:text="${p2.name}"></li>
+    <li th:text="${p2.price}"></li>
+</ul>
+
+<ul>
+    <th:block th:each="item : ${items}">
+        <li th:text="${item.name}"></li>
+        <li th:text="${item.price}"></li>
+    </th:block>
+</ul>
+
+<h1>Bài 6</h1>
+<h2>Danh sách sản phẩm (Trang [[${pageIndex}]] / [[${totalPages}]])</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Tên sản phẩm</th>
+        <th>Giá</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<ul>
+    <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+        <a th:href="@{'/page/' + ${pageSize} + '/' + ${i}}"
+           th:text="${i}"
+           th:classappend="${i == pageNumber} ? 'active'"></a>
+    </li>
+</ul>
+
+</body>
+</html>
