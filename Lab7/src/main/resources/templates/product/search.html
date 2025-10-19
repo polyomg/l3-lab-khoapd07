@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+</head>
+<body>
+<h2>SEARCH BY PRICE</h2>
+<form action="/product/search" method="get">
+  <input name="min" th:value="${param.min}" placeholder="Min Price?">
+  <input name="max" th:value="${param.max}" placeholder="Max Price?">
+  <button type="submit">Search</button>
+</form>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Date</th>
+  </tr>
+  <th:block th:each="item : ${items}">
+    <tr>
+      <td th:text="${item.id}"></td>
+      <td th:text="${item.name}"></td>
+      <td th:text="${item.price}"></td>
+      <td th:text="${item.createDate}"></td>
+    </tr>
+  </th:block>
+</table>
+</body>
+</html>
