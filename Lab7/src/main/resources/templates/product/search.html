@@ -14,13 +14,15 @@
 
 <table border="1" cellpadding="5" cellspacing="0">
   <tr>
+    <th>STT</th>
     <th>Id</th>
     <th>Name</th>
     <th>Price</th>
     <th>Date</th>
   </tr>
-  <th:block th:each="item : ${items}">
+  <th:block th:each="item, iterStat : ${items}">
     <tr>
+      <td th:text="${iterStat.index + 1}"></td>
       <td th:text="${item.id}"></td>
       <td th:text="${item.name}"></td>
       <td th:text="${item.price}"></td>

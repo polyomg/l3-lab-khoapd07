@@ -24,15 +24,35 @@ public class ProductController {
     @Autowired
     SessionService session;
 
+    @GetMapping("/form")
+    public String form(Model model) {
+        List<Product> items = dao.findAll();
+        model.addAttribute("items", items);
+        return "product/search";
+    }
+
+
     @RequestMapping("/search")
     public String search(Model model,
                          @RequestParam("min") Optional<Double> min,
                          @RequestParam("max") Optional<Double> max) {
         double minPrice = min.orElse(Double.MIN_VALUE);
         double maxPrice = max.orElse(Double.MAX_VALUE);
-        List<Product> items = dao.findByPriceBetween(minPrice, maxPrice);
+
+        List<Product> items = dao.findByPriceGreaterThan(minPrice);
         model.addAttribute("items", items);
-        return "product/search";
+          return "product/search";
+
+//        if(minPrice > maxPrice) {
+//            List<Product> items = dao.findAll();
+//            model.addAttribute("items", items);
+//            return "product/search";
+//        }else {
+//            List<Product> items = dao.findByPriceBetween(minPrice, maxPrice);
+//            model.addAttribute("items", items);
+//            return "product/search";
+//        }
+
     }
 
     @RequestMapping("/search-and-page")

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Email</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form div { margin-bottom: 10px; }
+        label { display: inline-block; width: 100px; }
+        input[type="text"], textarea { width: 300px; padding: 5px; }
+        button { padding: 8px 15px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .message { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+<h1>Send Email</h1>
+
+<div th:if="${message}" class="message" th:text="${message}"></div>
+<div th:if="${error}" class="error" th:text="${error}"></div>
+
+<form th:action="@{/mail/compose}" method="post">
+    <div>
+        <label for="from">From:</label>
+        <input type="text" id="from" name="from" th:value="${defaultFrom}" required>
+    </div>
+    <div>
+        <label for="to">To:</label>
+        <input type="text" id="to" name="to" required>
+    </div>
+    <div>
+        <label for="cc">Cc:</label>
+        <input type="text" id="cc" name="cc">
+    </div>
+    <div>
+        <label for="bcc">Bcc:</label>
+        <input type="text" id="bcc" name="bcc">
+    </div>
+    <div>
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+    </div>
+    <div>
+        <label for="body">Body:</label>
+        <textarea id="body" name="body" rows="5" required></textarea>
+    </div>
+    <div>
+        <label for="filenames">Attachments:</label>
+        <input type="text" id="filenames" name="filenames">
+    </div>
+    <div>
+        <button type="submit" name="action" value="send">Send Directly</button>
+        <button type="submit" name="action" value="push">Add to Queue</button>
+    </div>
+</form>
+</body>
+</html>

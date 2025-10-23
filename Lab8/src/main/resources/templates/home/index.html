@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .message { color: blue; font-weight: bold; }
+    nav a { margin-right: 15px; text-decoration: none; color: #007bff; }
+    nav a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+<h1>Trang Chủ</h1>
+
+<div th:if="${welcomeMessage}" class="message" th:text="${welcomeMessage}"></div>
+
+<p>Bạn đã đăng nhập thành công!</p>
+<p th:if="${session.user != null}">
+  Xin chào, <span th:text="${session.user.fullname}"></span>!
+  (<span th:text="${session.user.admin ? 'Admin' : 'User'}"></span>)
+</p>
+
+<nav>
+  <a th:href="@{/mail/compose}">Gửi Email</a>
+  <a th:href="@{/account/edit-profile}">Chỉnh sửa Profile</a>
+  <a th:href="@{/account/change-password}">Đổi mật khẩu</a>
+  <a th:href="@{/order/list}">Danh sách đơn hàng</a>
+  <a th:href="@{/admin/dashboard}">Admin Dashboard (bảo vệ)</a>
+  <a th:href="@{/admin/home/index}">Admin Home Index (không bảo vệ)</a>
+  <a th:href="@{/auth/logout}">Đăng xuất</a>
+</nav>
+
+<br>
+<p>Đây là trang chủ của ứng dụng của bạn.</p>
+</body>
+</html>
